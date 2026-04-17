@@ -61,7 +61,7 @@ cluster \
 
 ## Output
 
-- Cluster extent threshold (k) used in ceTDP-k Stage 1
+- Minimum cluster extent threshold (*k*) used in ceTDP-k Stage 1
 
 This threshold is passed to Stage 2 for TDP estimation.
 
