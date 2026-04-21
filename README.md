@@ -24,8 +24,48 @@ Stage 1 supports two main approaches:
 ### Parametric approach
 
 Based on Random Field Theory (RFT), implemented using:
-- SPM (MATLAB-based implementation)
-- FSL-based pipeline (wrapper using FSL tools)
+
+#### SPM (MATLAB-based implementation)
+
+The SPM implementation consists of a single function:
+
+`spm_ceTDP_minsize.m`
+
+This function is designed for **interactive use within the SPM GUI environment**.
+
+Typical usage:
+
+- Run the function without inputs
+- Select an SPM results file via the SPM interface
+- Choose the desired thresholding options within the GUI
+
+The function then computes the minimum significant cluster extent threshold (k) based on SPM's RFT-based cluster inference.
+
+The primary output is:
+
+> **k (cluster extent threshold in voxels)**
+
+which is used for Stage 2 (ceTDP-cons & ceTDP-appr).
+
+The function also prints standard SPM thresholding information (e.g., T/P thresholds), which are provided for reporting purposes only.
+
+```matlab
+====================================================
+ Cluster extent threshold (FWE corrected)
+====================================================
+
+ Threshold:
+   P = 0.001  (T = 3.3962)
+   alpha = 0.050
+
+ Result:
+   k = 129 voxels
+   corrected P = 0.0497
+```
+
+#### FSL-based implementation
+
+Follows a pipeline using standard FSL tools (see parametric/fsl/README.md).
 
 ### Nonparametric approach
 
@@ -37,10 +77,10 @@ Based on nonparametric inference, implemented in R and C++
 ceTDP-k/
 │
 ├── parametric/
-│   ├── spm/        # MATLAB implementation (SPM-based)
-│   ├── fsl/        # FSL pipeline (workflow-based, see README.md)
+│   ├── spm/        # MATLAB SPM-based single-function implementation (GUI + console output)
+│   ├── fsl/        # FSL-based pipeline implementation (see README.md)
 │
-├── nonparametric/  # R & C++ implementation
+├── nonparametric/  # R & C++ implementation (nonparametric inference)
 |
 └── README.md
 ```
