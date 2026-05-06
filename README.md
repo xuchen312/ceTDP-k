@@ -21,6 +21,8 @@ This repository implements Stage 1.
 
 Stage 1 supports two main approaches:
 
+---
+
 ### Parametric approach
 
 Based on Random Field Theory (RFT), implemented using:
@@ -31,15 +33,9 @@ The SPM implementation consists of a single function:
 
 `spm_ceTDP_minsize.m`
 
-This function is designed for **interactive use within the SPM GUI environment**.
+This function is designed for **interactive usage within the SPM GUI environment**.
 
-Typical usage:
-
-- Run the function without inputs
-- Select an SPM results file via the SPM interface
-- Choose the desired thresholding options within the GUI
-
-The function then computes the minimum significant cluster extent threshold (k) based on SPM's RFT-based cluster inference.
+It computes the minimum significant cluster extent threshold (k) based on SPM’s RFT-based inference.
 
 The primary output is:
 
@@ -47,29 +43,25 @@ The primary output is:
 
 which is used for Stage 2 (ceTDP-cons & ceTDP-appr).
 
-The function also prints standard SPM thresholding information (e.g., T/P thresholds), which are provided for reporting purposes only.
+See `parametric/spm/README.md` for implementation details.
 
-```matlab
-====================================================
- Cluster extent threshold (FWE corrected)
-====================================================
-
- Threshold:
-   P = 0.001  (T = 3.3962)
-   alpha = 0.050
-
- Result:
-   k = 129 voxels
-   corrected P = 0.0497
-```
+---
 
 #### FSL-based implementation
 
-Follows a pipeline using standard FSL tools (see parametric/fsl/README.md).
+Uses a standard FSL pipeline for RFT-based cluster inference.
+
+See `parametric/fsl/README.md`.
+
+---
 
 ### Nonparametric approach
 
-Based on nonparametric inference, implemented in R and C++
+Based on permutation-based inference.
+
+This approach does not rely on RFT assumptions and is implemented in R and C++.
+
+See `nonparametric/README.md`.
 
 ## Repository Structure
 
