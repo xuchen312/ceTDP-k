@@ -1,27 +1,23 @@
-# ceTDP-k SPM Implementation (Stage 1)
+# ceTDP-k SPM Implementation
 
-This directory contains the **SPM-based implementation** of Stage 1 (ceTDP-k), which computes the cluster extent threshold using Random Field Theory (RFT).
+This directory contains the **SPM-based implementation** of ceTDP-k, the cluster extent threshold computation component of Stage 1.
 
 ## Method Overview
 
 This implementation is a MATLAB wrapper built on top of **SPM12 cluster inference**.
 
-It derives the minimum significant cluster extent threshold (`k`) based on a user-defined cluster-forming threshold.
+It derives the minimum significant cluster extent threshold (`k`) based on the selected SPM cluster-forming threshold and cluster inference settings.
 
 Key characteristics:
 
-- Based on Gaussian RFT
+- Based on Gaussian Random Field Theory (RFT)
 - Fully integrated with SPM12 results structure (`xSPM`)
-- Interactive GUI-based workflow
+- Interactive SPM GUI workflow
 - No standalone statistical model outside SPM
 
 ## Main Function
 
-The implementation consists of a single MATLAB function:
-
-```matlab
-**spm_ceTDP_minsize.m**
-```
+The main function is `spm_ceTDP_minsize.m`.
 
 ## Usage
 
@@ -36,7 +32,7 @@ spm_ceTDP_minsize
 Typical workflow:
 
 - Select an SPM results structure (`SPM`) via the SPM GUI
-- Choose the desired thresholding options within the GUI
+- Choose the desired thresholding and inference options
 - Run the computation
 
 ## Output
@@ -45,7 +41,7 @@ The function computes:
 
 **k (cluster extent threshold in voxels)**
 
-This is the minimum cluster size required for significance under the selected SPM configuration.
+This is the minimum cluster extent, in voxels, required for cluster-level significance under the selected SPM configuration.
 
 ## Additional Output (Reporting Only)
 
@@ -75,9 +71,9 @@ Example outputs:
 
 ## Integration with ceTDP-k
 
-This implementation is part of the **parametric branch of Stage 1 (ceTDP-k)**.
+This implementation is the **SPM-based parametric implementation of ceTDP-k**.
 
-The resulting cluster extent threshold (**k**) is used as input for Stage 2 (ceTDP-cons / ceTDP-appr).
+The resulting cluster extent threshold (`k`) is used for subsequent region specification in Stage 1 and as an input to Stage 2 (ceTDP-cons / ceTDP-appr).
 
 ## Dependencies
 
@@ -93,5 +89,5 @@ addpath(genpath('/path/to/spm12'));
 ## Notes
 
 - This implementation does not replace SPM inference
-- It operates fully within SPM’s statistical framework
+- It operates fully within SPM's statistical framework
 - Results depend on SPM model specification and thresholding choices
