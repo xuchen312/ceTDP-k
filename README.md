@@ -12,7 +12,7 @@ Cluster-extent inference using RFT is widely used in fMRI analysis, but typicall
 
 The ceTDP framework addresses this by:
 
-- **Stage 1**: computing the minimum significant cluster extent threshold (*k*)
+- **Stage 1**: computing the minimum significant cluster extent threshold (*k*) and specifying regions for Stage 2 inference
 - **Stage 2**: estimating TDP bounds within selected regions
 
 This repository implements the cluster extent threshold computation component of Stage 1.
@@ -23,7 +23,7 @@ Stage 1 supports two main approaches:
 
 ---
 
-### Parametric approach
+### 1. Parametric approach
 
 Based on RFT, implemented using:
 
@@ -45,8 +45,6 @@ which is used as an input for Stage 2 (ceTDP-cons & ceTDP-appr).
 
 See `parametric/spm/README.md` for implementation details.
 
----
-
 #### FSL-based implementation
 
 The FSL implementation uses a standard FSL pipeline for RFT-based cluster inference and obtains the corresponding minimum significant cluster extent threshold (*k*).
@@ -55,7 +53,7 @@ See `parametric/fsl/README.md`.
 
 ---
 
-### Nonparametric approach
+### 2. Nonparametric approach
 
 The nonparametric implementation estimates the minimum significant cluster extent threshold (*k*) using permutation-based inference, without relying on RFT assumptions.
 
