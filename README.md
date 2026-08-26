@@ -2,9 +2,9 @@
 
 **ceTDP-k** is the **cluster extent threshold computation component of Stage 1** in the ceTDP framework for cluster-extent inference in neuroimaging.
 
-It computes the minimum significant cluster extent threshold (*k*) required for region specification and Stage 2 of ceTDP, where *k* is used for **True Discovery Proportion (TDP)** inference within selected regions.
+It computes the minimum significant cluster extent threshold (`k`) required for region specification and Stage 2 of ceTDP, where `k` is used for **True Discovery Proportion (TDP)** inference within selected regions.
 
-This repository provides parametric and nonparametric implementations for estimating *k* using Random Field Theory (RFT)-based and permutation-based approaches.
+This repository provides parametric and nonparametric implementations for estimating `k` using Random Field Theory (RFT)-based and permutation-based approaches.
 
 ## Overview
 
@@ -12,7 +12,7 @@ Cluster-extent inference using RFT is widely used in fMRI analysis, but typicall
 
 The ceTDP framework addresses this by:
 
-- **Stage 1**: computing the minimum significant cluster extent threshold (*k*) and specifying regions for Stage 2 inference
+- **Stage 1**: computing the minimum significant cluster extent threshold (`k`) and specifying regions for Stage 2 inference
 - **Stage 2**: estimating TDP bounds within selected regions
 
 This repository implements the cluster extent threshold computation component of Stage 1.
@@ -35,7 +35,7 @@ The SPM implementation consists of a single function:
 
 This function is designed for interactive use within the SPM GUI environment.
 
-It computes the minimum significant cluster extent threshold (*k*) based on SPM's RFT-based inference.
+It computes the minimum significant cluster extent threshold (`k`) based on SPM's RFT-based inference.
 
 The primary output is:
 
@@ -47,7 +47,7 @@ See `parametric/spm/README.md` for implementation details.
 
 #### FSL-based implementation
 
-The FSL implementation uses a standard FSL pipeline for RFT-based cluster inference and obtains the corresponding minimum significant cluster extent threshold (*k*).
+The FSL implementation uses a standard FSL pipeline for RFT-based cluster inference and obtains the corresponding minimum significant cluster extent threshold (`k`).
 
 See `parametric/fsl/README.md`.
 
@@ -55,7 +55,7 @@ See `parametric/fsl/README.md`.
 
 ### 2. Nonparametric approach
 
-The nonparametric implementation estimates the minimum significant cluster extent threshold (*k*) using permutation-based inference, without relying on RFT assumptions.
+The nonparametric implementation estimates the minimum significant cluster extent threshold (`k`) using permutation-based inference, without relying on RFT assumptions.
 
 It is implemented in R and C++.
 
