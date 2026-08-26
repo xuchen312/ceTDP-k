@@ -39,7 +39,7 @@ Typical workflow:
 
 The function computes:
 
-**k (cluster extent threshold in voxels)**
+> **k (cluster extent threshold in voxels)**
 
 This is the minimum cluster extent, in voxels, required for cluster-level significance under the selected SPM configuration.
 
