@@ -263,7 +263,7 @@ if (!is.null(opt$cft)) {
   cat("METHOD: Cluster-forming\n", file=out, append=TRUE)
   cat("cft =", opt$cft, "\n", file=out, append=TRUE)
   cat("cluster-size threshold =", sizethres, "\n", file=out, append=TRUE)
-  cat("all cluster-size threshold =", allsthres, "\n", file=out, append=TRUE)
+  cat("total supra-threshold voxel threshold =", allsthres, "\n", file=out, append=TRUE)
 }
 
 cat("Done.\n")
