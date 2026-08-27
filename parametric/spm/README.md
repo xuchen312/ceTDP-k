@@ -4,20 +4,24 @@ This directory contains the **SPM-based implementation** of ceTDP-k, the cluster
 
 ## Method Overview
 
-This implementation is a MATLAB wrapper built on top of **SPM12 cluster inference**.
+This implementation is a MATLAB function built on top of **SPM12 cluster-level inference**.
 
-It derives the minimum significant cluster extent threshold (`k`) based on the selected SPM cluster-forming threshold and cluster inference settings.
+It computes the minimum significant cluster extent threshold (`k`) based on the selected SPM cluster-forming threshold and cluster-level inference settings.
 
 Key characteristics:
 
 - Based on Gaussian Random Field Theory (RFT)
-- Fully integrated with SPM12 results structure (`xSPM`)
+- Integrated with SPM12 statistical results (`SPM` / `xSPM`)
 - Interactive SPM GUI workflow
 - No standalone statistical model outside SPM
 
 ## Main Function
 
-The main function is `spm_ceTDP_minsize.m`.
+The main function is:
+
+```matlab
+spm_ceTDP_minsize.m
+```
 
 ## Usage
 
@@ -31,9 +35,9 @@ spm_ceTDP_minsize
 
 Typical workflow:
 
-- Select an SPM results structure (`SPM`) via the SPM GUI
-- Choose the desired thresholding and inference options
-- Run the computation
+1. Select an SPM results structure (`SPM`) via the SPM GUI.
+2. Specify the desired thresholding and cluster-level inference options.
+3. Run the computation.
 
 ## Output
 
@@ -51,11 +55,11 @@ The function also displays standard SPM statistical information, including:
 - FWE-corrected significance level
 - Cluster-level corrected p-values
 
-These values are provided for reporting purposes only and are **not used as Stage 2 inputs**.
+These values are provided for reporting purposes and are **not required as Stage 2 inputs**.
 
-Example outputs:
+Example output:
 
-```matlab
+```text
 ====================================================
  Cluster extent threshold (FWE corrected)
 ====================================================
@@ -69,16 +73,16 @@ Example outputs:
    corrected P = 0.0497
 ```
 
-## Integration with ceTDP-k
+## Integration with ceTDP
 
-This implementation is the **SPM-based parametric implementation of ceTDP-k**.
+This implementation provides the **SPM-based parametric computation of ceTDP-k**.
 
-The resulting cluster extent threshold (`k`) is used for subsequent region specification in Stage 1 and as an input to Stage 2 (ceTDP-cons / ceTDP-appr).
+The resulting cluster extent threshold (`k`) is used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input for Stage 2 (ceTDP-cons / ceTDP-appr).
 
 ## Dependencies
 
 - MATLAB
-- SPM12 (must be added to MATLAB path)
+- SPM12 (must be added to the MATLAB path)
 
 Example:
 
@@ -88,6 +92,6 @@ addpath(genpath('/path/to/spm12'));
 
 ## Notes
 
-- This implementation does not replace SPM inference
-- It operates fully within SPM's statistical framework
-- Results depend on SPM model specification and thresholding choices
+- This implementation does not replace SPM cluster-level inference.
+- It operates within SPM's statistical framework.
+- Results depend on SPM model specification and thresholding choices.
