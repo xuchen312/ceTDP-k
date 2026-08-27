@@ -2,14 +2,14 @@
 
 This directory contains the **FSL-based implementation of ceTDP-k**, the cluster extent threshold computation component of Stage 1 in the ceTDP framework.
 
-It relies on standard FSL tools for estimating image smoothness and performing Random Field Theory (RFT)-based cluster-extent inference.
+It uses standard FSL tools to estimate image smoothness and perform Random Field Theory (RFT)-based cluster-level inference.
 
 ## Requirements
 
 - FSL installed and configured
-- GLM results (e.g., z-stat maps)
+- Z-statistic map
 - Brain mask
-- Residual images (recommended for smoothness estimation)
+- Residual image (recommended for smoothness estimation)
 
 ## Workflow Overview
 
@@ -17,7 +17,7 @@ The procedure consists of two main steps:
 
 ### 1. Smoothness estimation
 
-Smoothness can be estimated from either residual images (recommended) or z-stat maps.
+Image smoothness can be estimated from either residual images (recommended) or Z-statistic maps.
 
 #### Using residuals (recommended)
 
@@ -25,17 +25,19 @@ Smoothness can be estimated from either residual images (recommended) or z-stat 
 smoothest -r <residual_image.nii.gz> -m <brain_mask.nii.gz>
 ```
 
-#### Using z-stat maps (less optimal)
+#### Using a Z-statistic map (less optimal)
 
 ```bash
 smoothest -z <z_map.nii.gz> -m <brain_mask.nii.gz>
 ```
 
-The `smoothest` command returns:
+The `smoothest` command reports several quantities, including:
 
-- **DLH** — determinant of the Lambda matrix used in RFT
+- **DLH** — determinant of the Lambda matrix used for RFT-based inference
 - **VOLUME** — number of voxels within the analysis mask
 - **RESELS** — number of resolution elements (smoothness-adjusted search volume)
+
+For the `cluster` command below, **DLH** and **VOLUME** are used as inputs.
 
 ### 2. Cluster-level inference
 
@@ -46,6 +48,7 @@ Use FSL `cluster` to obtain the minimum significant cluster extent threshold (`k
 ```bash
 cluster -i <zmap.nii.gz> -t <CDT> -p <alpha> --dlh=<DLH> --volume=<VOLUME> --minclustersize --no_table
 ```
+
 **Multi-line equivalent**
 
 ```bash
@@ -59,22 +62,29 @@ cluster \
   --no_table
 ```
 
+The `--minclustersize` option returns the minimum cluster extent threshold corresponding to the specified cluster-defining threshold (`CDT`) and significance level (`alpha`).
+
 ## Inputs
+
+The procedure requires:
 
 - Z-statistic map
 - Brain mask
-- Cluster-defining threshold (CDT)
-- Significance level (alpha)
-- Smoothness estimates (DLH, RESELS and VOLUME)
+- Cluster-defining threshold (`CDT`)
+- Significance level (`alpha`)
+- Smoothness estimates (`DLH` and `VOLUME`)
+
+A residual image is recommended for estimating smoothness.
 
 ## Output
 
 > **k (minimum significant cluster extent threshold, in voxels)**
 
-The resulting `k` is used for subsequent region specification in Stage 1 and as an input to Stage 2 of ceTDP.
+The resulting `k` is used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input to Stage 2 of ceTDP.
 
 ## Notes
 
-- This implementation is a wrapper around standard FSL RFT-based cluster inference.
+- This implementation uses standard FSL tools for RFT-based cluster-level inference.
 - It does not modify FSL statistical models or inference procedures.
-- Results depend on accurate smoothness estimation.
+- Accurate smoothness estimation is important for valid RFT-based inference.
+- Results depend on the statistical map, analysis mask, cluster-defining threshold, significance level, and estimated smoothness.
