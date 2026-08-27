@@ -229,9 +229,13 @@ cluster-size threshold = ...
 all cluster-size threshold = ...
 ```
 
-The primary quantity for ceTDP-k is:
+The primary output for ceTDP-k is:
 
-> **k (minimum significant cluster extent threshold, in voxels)**
+> **cluster-size threshold (`k`)**
+
+where `k` denotes the minimum cluster size required for cluster-level significance under the specified CFT and significance level.
+
+The total supra-threshold voxel threshold is an additional permutation-based summary statistic and is not used as the ceTDP-k threshold `k`.
 
 ### k-to-CFT
 
@@ -244,7 +248,7 @@ alpha = ...
 z-threshold = ...
 ```
 
-The resulting threshold can be used to determine the corresponding cluster-forming threshold for the specified cluster extent.
+Here, `k` specifies the cluster extent threshold, and the resulting z-threshold is the corresponding CFT.
 
 ### Both calculations
 
