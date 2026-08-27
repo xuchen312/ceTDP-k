@@ -126,5 +126,5 @@ The resulting cluster extent threshold (`k`) can be used in the subsequent Stage
 - No RFT assumptions are required.
 - Results depend on the number of permutations (`nperm`).
 - Voxel connectivity (`conn`) determines how clusters are formed.
-- In **CFT-to-`k`** mode, the choice of CFT affects the resulting cluster extent threshold (`k`).
+- In **CFT-to-`k`** mode, the choice of CFT affects the resulting cluster extent threshold.
 - In **`k`-to-CFT** mode, the specified cluster extent threshold (`kval`) determines the corresponding CFT.
