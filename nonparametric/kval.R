@@ -57,7 +57,7 @@ if (is.null(opt$dirpath)) stop("--dirpath is required")
 if (is.null(opt$mask)) stop("--mask is required")
 
 if (!opt$conn %in% c(6,18,26)) stop("--conn must be 6 / 18 / 26")
-if (is.null(opt$k) && is.null(opt$cft)) stop("You must provide either --kval or --cft (or both)")
+if (is.null(opt$kval) && is.null(opt$cft)) stop("You must provide either --kval or --cft (or both)")
 
 # -----------------------------
 # load cpp (same folder as script)
@@ -157,9 +157,9 @@ zval <- NULL
 maxsize <- NULL
 allsize <- NULL
 
-if (!is.null(opt$k)) {
+if (!is.null(opt$kval)) {
   zval <- numeric(nperm + 1)
-  id <- FindIndex(opt$k, m, adj, indexp, ord, ranks)
+  id <- FindIndex(opt$kval, m, adj, indexp, ord, ranks)
   if (id > 0) zval[nperm + 1] <- zmap[id]
 }
 
@@ -220,8 +220,8 @@ for (np in 1:nperm) {
   ranks[ord] <- 1:m
   
   # ---------------- FindIndex ----------------
-  if (!is.null(opt$k)) {
-    id <- FindIndex(opt$k, m, adj, indexp, ord, ranks)
+  if (!is.null(opt$kval)) {
+    id <- FindIndex(opt$kval, m, adj, indexp, ord, ranks)
     if (id > 0) zval[np] <- zmap_perm[id]
   }
   
@@ -248,10 +248,10 @@ cut <- ceiling((nperm + 1) * (1 - alpha))
 cat("RESULTS\n", file=out, append=TRUE)
 cat("========================\n", file=out, append=TRUE)
 
-if (!is.null(opt$k)) {
+if (!is.null(opt$kval)) {
   zthres <- sort(zval)[cut]
   cat("METHOD: K-based\n", file=out, append=TRUE)
-  cat("k =", opt$k, "\n", file=out, append=TRUE)
+  cat("k =", opt$kval, "\n", file=out, append=TRUE)
   cat("alpha =", alpha, "\n", file=out, append=TRUE)
   cat("z-threshold =", zthres, "\n", file=out, append=TRUE)
   cat("\n", file=out, append=TRUE)
