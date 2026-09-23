@@ -2,9 +2,9 @@
 
 **ceTDP-k** is the **cluster extent threshold computation component of Stage 1** in the ceTDP framework for cluster-extent inference in neuroimaging.
 
-It computes the minimum significant cluster extent threshold (`k`) used in subsequent region specification and Stage 2 of ceTDP, where `k` is used for **True Discovery Proportion (TDP)** inference within selected regions.
+It computes the minimum significant cluster extent threshold (`k`) used for subsequent region specification and Stage 2 of ceTDP, where `k` is used for **True Discovery Proportion (TDP)** inference within selected regions.
 
-This repository provides parametric and nonparametric implementations for estimating `k` using Random Field Theory (RFT)-based and permutation-based approaches.
+This repository provides parametric and nonparametric implementations for computing `k` using Random Field Theory (RFT)-based and permutation-based approaches.
 
 ## Overview
 
@@ -12,8 +12,8 @@ Cluster-extent inference using RFT is widely used in fMRI analysis, but typicall
 
 The ceTDP framework addresses this by:
 
-- **Stage 1**: computing the minimum significant cluster extent threshold (`k`) and specifying regions for subsequent inference
-- **Stage 2**: estimating TDP bounds within selected regions
+- **Stage 1**: minimum significant cluster extent threshold (`k`) computation and region specification for subsequent inference
+- **Stage 2**: TDP lower-bound estimation within selected regions
 
 This repository implements **the cluster extent threshold computation component of Stage 1 (ceTDP-k)**. Region specification is a separate part of Stage 1 and is not implemented in this repository.
 
@@ -41,7 +41,7 @@ The primary output is:
 
 > **k (cluster extent threshold in voxels)**
 
-This value is used in subsequent Stage 1 processing and as an input to Stage 2 (ceTDP-cons and ceTDP-appr).
+This value is used in subsequent Stage 1 processing and as an input to Stage 2 (ceTDP-cons and ceTDP-heur).
 
 See `parametric/spm/README.md` for implementation details.
 
