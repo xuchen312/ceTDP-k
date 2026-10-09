@@ -33,9 +33,9 @@ smoothest -z <z_map.nii.gz> -m <brain_mask.nii.gz>
 
 The `smoothest` command reports several quantities, including:
 
-- **DLH** — determinant of the Lambda matrix used for RFT-based inference
-- **VOLUME** — number of voxels within the analysis mask
-- **RESELS** — number of resolution elements (smoothness-adjusted search volume)
+- **DLH** - determinant of the Lambda matrix used for RFT-based inference
+- **VOLUME** - number of voxels within the analysis mask
+- **RESELS** - number of resolution elements (smoothness-adjusted search volume)
 
 For the `cluster` command below, **DLH** and **VOLUME** are used as inputs.
 
