@@ -77,7 +77,7 @@ Example output:
 
 This implementation provides the **SPM-based parametric computation of ceTDP-k**.
 
-The resulting cluster extent threshold (`k`) is used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input for Stage 2 (ceTDP-cons / ceTDP-appr).
+The resulting cluster extent threshold (`k`) is used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input for Stage 2 (ceTDP-cons / ceTDP-heur).
 
 ## Dependencies
 
