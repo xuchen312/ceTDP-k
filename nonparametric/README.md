@@ -2,7 +2,7 @@
 
 This directory contains the **nonparametric implementation of ceTDP-k**, the cluster extent threshold computation component of Stage 1 in the ceTDP framework.
 
-It estimates the minimum significant cluster extent threshold (`k`) using permutation-based inference without relying on Random Field Theory (RFT). The implementation also supports the reverse thresholding operation, in which the cluster-forming threshold (CFT) is determined for a given cluster extent threshold (`k`).
+It computes the minimum significant cluster extent threshold (`k`) using permutation-based inference without relying on Random Field Theory (RFT). The implementation also supports the reverse thresholding operation, in which the cluster-forming threshold (CFT) is determined for a given cluster extent threshold (`k`).
 
 ## Method Overview
 
@@ -21,14 +21,14 @@ The implementation supports two complementary thresholding operations.
 
 ### 1. CFT-to-k
 
-Given a cluster-forming threshold (`cft`) and a significance level (`alpha`), the method estimates the minimum significant cluster extent threshold from the empirical permutation distribution.
+Given a CFT (`cft`) and a significance level (`alpha`), the method estimates the minimum significant cluster extent threshold from the empirical permutation distribution.
 
 - **Input:** CFT (`cft`)
 - **Output:** Minimum significant cluster extent
 
 ### 2. k-to-CFT
 
-Given a cluster extent threshold (`kval`) and a significance level (`alpha`), the method determines the corresponding cluster-forming threshold from the empirical permutation distribution.
+Given a cluster extent threshold (`kval`) and a significance level (`alpha`), the method determines the corresponding CFT from the empirical permutation distribution.
 
 - **Input:** Cluster extent threshold (`kval`)
 - **Output:** CFT
@@ -162,9 +162,7 @@ The following threshold arguments are optional individually:
 - `--cft` / `-t`
 - `--kval` / `-k`
 
-At least one of `cft` or `kval` must be provided.
-
-If both are provided, both calculations are performed.
+At least one of `cft` or `kval` must be provided. If both are provided, both calculations are performed.
 
 ## Inputs
 
@@ -258,7 +256,7 @@ If both `cft` and `kval` are provided, the output file contains both result sect
 
 This implementation is the **nonparametric branch of ceTDP-k**, providing the cluster extent threshold computation component of Stage 1.
 
-The resulting cluster extent threshold can be used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input to Stage 2 (ceTDP-cons / ceTDP-appr).
+The resulting cluster extent threshold can be used in the subsequent Stage 1 workflow for region specification and cluster information preparation, and is required as an input to Stage 2 (ceTDP-cons / ceTDP-heur).
 
 The cluster information required by Stage 2 can be prepared using the `cluster-export` utilities provided in the main ceTDP software suite.
 
